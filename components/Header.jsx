@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 import Link from "next/link";
+import { getCategories } from "../services";
 
 const Header = () => {
-  const categories = [
-    { name: "react", slug: "react" },
-    { name: "reactcddfs", slug: "reactsdsds" },
-  ];
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories().then((newCategories) => {
+      setCategories(newCategories);
+    });
+  }, []);
 
   return (
     <div className="container mx-auto px-10 mb-8">
